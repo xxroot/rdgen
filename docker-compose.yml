@@ -4,11 +4,11 @@ services:
     image: bryangerlach/rdgen:v0.3.1
     restart: unless-stopped
     environment:
-      SECRET_KEY: "django-insecure-!(t-!f#6g#sr%yfded9(xha)g+=!6craeez^cp+*&bz_7vdk61"
-      GHUSER: "github_username"
-      GHBEARER: "github_access_token"
-      GENURL: "accessible_url_of_server"
-      PROTOCOL: "https"
+      SECRET_KEY: "24fe52741c57e76b37336e66ecd5ced96e22976ca3ded6f5c947f4370cccee9ad4d1e3b41ef0fc62a2ea66fe212de3ac2f85ea3c6c7d9400cb4142c0770c297d4dbe29eec31a4a015073bc5e0c42d22175c408648a6991cf0f963cab69e87efbc961cbd5"
+      GHUSER: "xxroot"
+      GHBEARER: "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"
+      GENURL: "http://rudesk.cjroot.com"
+      PROTOCOL: "http"
       REPONAME: "rdgen"
     ports:
       - "8000:8000"

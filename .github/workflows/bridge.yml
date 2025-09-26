@@ -24,17 +24,17 @@ jobs:
       fail-fast: false
       matrix:
         job:
-          - {
-              target: x86_64-unknown-linux-gnu,
-              os: ubuntu-24.04,
-              extra-build-args: "",
-            }
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-24.04
+            extra-build-args: ""
+            arch: x86_64
+
     steps:
       - name: Checkout source code
         if: ${{ inputs.version != 'master' }}
         uses: actions/checkout@v4
         with:
-          repository: rustdesk/rustdesk
+          repository: xxroot/rustdesk
           ref: refs/tags/${{ inputs.version }}
           submodules: recursive
         
@@ -42,7 +42,7 @@ jobs:
         if: ${{ inputs.version == 'master' }}
         uses: actions/checkout@v4
         with:
-          repository: rustdesk/rustdesk
+          repository: xxroot/rustdesk
           submodules: recursive
 
       - name: Install prerequisites
@@ -102,7 +102,7 @@ jobs:
           cp ./flutter/macos/Runner/bridge_generated.h ./flutter/ios/Runner/bridge_generated.h
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v3
         with:
           name: bridge-artifact
           path: |

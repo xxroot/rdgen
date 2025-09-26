@@ -24,11 +24,11 @@ jobs:
       fail-fast: false
       matrix:
         job:
-          - target: x86_64-unknown-linux-gnu
-            os: ubuntu-24.04
-            extra-build-args: ""
-            arch: x86_64
-
+          - {
+              target: x86_64-unknown-linux-gnu,
+              os: ubuntu-24.04,
+              extra-build-args: "",
+            }
     steps:
       - name: Checkout source code
         if: ${{ inputs.version != 'master' }}
@@ -102,7 +102,7 @@ jobs:
           cp ./flutter/macos/Runner/bridge_generated.h ./flutter/ios/Runner/bridge_generated.h
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@master
         with:
           name: bridge-artifact
           path: |

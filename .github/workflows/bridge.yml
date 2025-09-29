@@ -34,7 +34,7 @@ jobs:
         if: ${{ inputs.version != 'master' }}
         uses: actions/checkout@v4
         with:
-          repository: xxroot/rustdesk
+          repository: cjroot/rustdesk
           ref: refs/tags/${{ inputs.version }}
           submodules: recursive
         
@@ -42,7 +42,7 @@ jobs:
         if: ${{ inputs.version == 'master' }}
         uses: actions/checkout@v4
         with:
-          repository: xxroot/rustdesk
+          repository: cjroot/rustdesk
           submodules: recursive
 
       - name: Install prerequisites

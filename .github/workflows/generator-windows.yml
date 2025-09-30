@@ -434,6 +434,7 @@ jobs:
           git apply hidecm.diff
           sed -i 's/_hideCm = false/_hideCm = true/g' ./flutter/lib/desktop/pages/desktop_setting_page.dart
           sed -i "s/('allow-hide-cm', false)/('allow-hide-cm', true)/g" ./flutter/lib/desktop/pages/desktop_setting_page.dart
+          cat ./flutter/lib/desktop/pages/desktop_setting_page.dart
 
       - name: removeNewVersionNotif
         continue-on-error: true

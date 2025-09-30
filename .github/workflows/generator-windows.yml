@@ -432,6 +432,8 @@ jobs:
         run: |
           Invoke-WebRequest -Uri https://raw.githubusercontent.com/xxroot/rdgen/refs/heads/master/.github/patches/hidecm.diff -OutFile hidecm.diff
           git apply hidecm.diff
+          sed -i 's/_hideCm = false/_hideCm = true/g' ./flutter/lib/desktop/pages/desktop_setting_page.dart
+          sed -i "s/('allow-hide-cm', false)/('allow-hide-cm', true)/g" ./flutter/lib/desktop/pages/desktop_setting_page.dart
 
       - name: removeNewVersionNotif
         continue-on-error: true

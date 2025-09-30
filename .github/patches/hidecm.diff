@@ -56,7 +56,7 @@ index 877576461..4efd6c8b0 100644
 +
      if (method != kUsePermanentPassword) {
        await bind.mainSetOption(
-           key: 'allow-hide-cm', value: bool2option('allow-hide-cm', true));
+           key: 'allow-hide-cm', value: bool2option('allow-hide-cm', false));
      }
 -    */
    }
@@ -70,7 +70,7 @@ index 877576461..4efd6c8b0 100644
 +
      if (mode != 'password') {
        await bind.mainSetOption(
-           key: 'allow-hide-cm', value: bool2option('allow-hide-cm', true));
+           key: 'allow-hide-cm', value: bool2option('allow-hide-cm', false));
      }
 -    */
    }
@@ -86,7 +86,7 @@ index 877576461..4efd6c8b0 100644
          bind.mainGetOptionSync(key: kOptionVerificationMethod);
 @@ -137,7 +136,6 @@ class ServerModel with ChangeNotifier {
          verificationMethod == kUsePermanentPassword)) {
-       _hideCm = true;
+       _hideCm = false;
      }
 -    */
  
@@ -102,7 +102,7 @@ index 877576461..4efd6c8b0 100644
          'allow-hide-cm', await bind.mainGetOption(key: 'allow-hide-cm'));
      if (!(approveMode == 'password' &&
          verificationMethod == kUsePermanentPassword)) {
-       hideCm = true;
+       hideCm = false;
      }
 -    */
 +

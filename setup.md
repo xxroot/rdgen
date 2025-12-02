@@ -19,7 +19,7 @@
    * In the left pane, click on Secrets and variables, then click Actions
    * Now click New repository secret
    * Set the Name to GENURL
-   * Set the Secret to https://rdgen.hostname.com (or whatever your server will be accessed from)
+   * Set the Secret to https://rdgen.hostname.com:8000 (or whatever your server will be accessed from)
 4. Now download the docker-compose.yml file and fill in the environment variables:
   * SECRET_KEY="your secret key" - generate a secret key by running: ```python3 -c 'import secrets; print(secrets.token_hex(100))'```
   * GHUSER="your github username"  

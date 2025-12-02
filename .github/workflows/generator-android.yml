@@ -316,6 +316,15 @@ jobs:
           # ./flutter/pubspec.yaml
           #sed -i '/intl:/a \ \ archive: ^3.6.1' ./flutter/pubspec.yaml
           
+      - name: remove warning messages
+          continue-on-error: true
+          shell: bash
+          run: |
+          #去除固定密码的警告
+          perl -0777 -pe "s/Widget _buildPresetPasswordWarning\\s*\\([^\\)]*\\)\\s*\\{.*?\\n\\}/Widget _buildPresetPasswordWarning() {\\n  return SizedBox.shrink();\\n}/s" -i ./flutter/lib/common.dart
+          #去除诈骗警告提示
+          sed -i 's/bind.mainGetLocalOption(key: "show-scam-warning") != *"N"/false/' ./flutter/lib/mobile/pages/server_page.dart
+          
       - name: change appname to custom
         if: inputs.appname != 'rustdesk'
         continue-on-error: true

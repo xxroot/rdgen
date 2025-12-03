@@ -173,16 +173,7 @@ jobs:
         run: |
           sed -i -e 's|2ded7f146437a761ffe6981e2f742038f85ca68d|08a471bb8ceccdd50483c81cdfa8b81b07b14b87|' ./flutter/pubspec.lock
           sed -i -e 's|2ded7f146437a761ffe6981e2f742038f85ca68d|08a471bb8ceccdd50483c81cdfa8b81b07b14b87|' ./flutter/pubspec.yaml
-          
-      - name: remove warning messages
-        continue-on-error: true
-        shell: bash
-        run: |
-          # 去除固定密码的警告
-          perl -0777 -pe "s/Widget _buildPresetPasswordWarning\\s*\\([^\\)]*\\)\\s*\\{.*?\\n\\}/Widget _buildPresetPasswordWarning() {\\n  return SizedBox.shrink();\\n}/s" -i ./flutter/lib/common.dart
-          # 去除诈骗警告提示
-          sed -i 's/bind.mainGetLocalOption(key: "show-scam-warning") != *"N"/false/' ./flutter/lib/mobile/pages/server_page.dart
-          
+      
       - name: change appname to custom
         if: inputs.appname != 'rustdesk'
         continue-on-error: true
@@ -225,6 +216,15 @@ jobs:
           sed -i -e 's|{subkey}|\\\"{subkey}\\\"|' ./src/platform/windows.rs
           sed -i -e 's|reg delete HKEY_CLASSES_ROOT\\\\.{ext} /f|reg delete \\\"HKEY_CLASSES_ROOT\\\\.{ext}\\\" /f|' ./src/platform/windows.rs
           sed -i -e 's|reg delete HKEY_CLASSES_ROOT\\\\{ext} /f|reg delete \\\"HKEY_CLASSES_ROOT\\\\{ext}\\\" /f|' ./src/platform/windows.rs
+          
+      - name: remove warning messages
+        continue-on-error: true
+        shell: bash
+        run: |
+          # 去除固定密码的警告
+          perl -0777 -pe "s/Widget _buildPresetPasswordWarning\\s*\\([^\\)]*\\)\\s*\\{.*?\\n\\}/Widget _buildPresetPasswordWarning() {\\n  return SizedBox.shrink();\\n}/s" -i ./flutter/lib/common.dart
+          # 去除诈骗警告提示
+          sed -i 's/bind.mainGetLocalOption(key: "show-scam-warning") != *"N"/false/' ./flutter/lib/mobile/pages/server_page.dart
           
       - name: change company name
         if: fromJson(inputs.extras).compname != 'Purslane Ltd'

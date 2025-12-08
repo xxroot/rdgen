@@ -56,7 +56,8 @@
             100% { transform: rotate(360deg); }
         }
         .progress-bar {
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             height: 10px;
             background-color: #6072DB;
             border-radius: 5px;
@@ -67,7 +68,7 @@
             width: 0%;
             height: 100%;
             background-color: #3498db;
-            transition: width 0.5s ease-in-out;
+            transition: width 0.8s ease-in-out;
         }
     </style>
 </head>
@@ -180,35 +181,53 @@
             }
         }
 
-        // Simulate progress (replace with actual progress tracking if possible)
-        function simulateProgress() {
-            const progressBar = document.getElementById('progressBarFill');
-            const statusText = document.getElementById('statusText');
-            let progress = 0;
-            const stages = [
-                'Initializing build process',
-                'Compiling source code',
-                'Generating platform-specific binaries',
-                'Packaging application',
-                'Finalizing build'
-            ];
-
-            const progressInterval = setInterval(() => {
-                progress += Math.random() * 20;
-                progressBar.style.width = `${Math.min(progress, 100)}%`;
-                
-                const stageIndex = Math.floor(progress / 20);
-                statusText.textContent = stages[Math.min(stageIndex, stages.length - 1)];
-
-                if (progress >= 100) {
-                    clearInterval(progressInterval);
-                }
-            }, 1000);
-        }
-
+		// Simulate progress (replace with actual progress tracking if possible)
+		function simulateProgress() {
+			const progressBar = document.getElementById('progressBarFill');
+			const statusText = document.getElementById('statusText');
+			let currentProgress = 50; // 当前进度（用于平滑动画）
+			let progressInterval = null;
+		
+			// 核心：从状态文本中提取百分比数值
+			function getTargetProgressFromStatus() {
+				// 正则匹配 "XX%" 中的数字（支持整数/小数）
+				const progressMatch = statusText.textContent.match(/(\d+(\.\d+)?)%/);
+				// 提取到数值则转成数字，否则默认0
+				return progressMatch ? parseFloat(progressMatch[1]) : 0;
+			}
+		
+			// 进度条平滑过渡逻辑
+			function updateProgress() {
+				const targetProgress = getTargetProgressFromStatus();
+				
+				// 每次向目标进度靠近0.5%（可调整步长控制平滑度）
+				if (currentProgress < targetProgress) {
+					currentProgress += 0.5;
+					// 防止超过目标进度
+					currentProgress = Math.min(currentProgress, targetProgress);
+					progressBar.style.width = `${currentProgress}%`;
+				} else {
+					// 到达目标进度后，仍监听状态变化（避免状态更新后无响应）
+					return;
+				}
+			}
+		
+			// 启动进度更新（每30ms更新一次，保证动画平滑）
+			progressInterval = setInterval(updateProgress, 30);
+		
+			// 可选：监听状态文本变化（如果状态是实时更新的）
+			const mutationObserver = new MutationObserver(updateProgress);
+			mutationObserver.observe(statusText, { childList: true, subtree: true });
+		
+			// 防止内存泄漏，页面卸载时清理
+			window.addEventListener('beforeunload', () => {
+				clearInterval(progressInterval);
+				mutationObserver.disconnect();
+			});
+		}
         // Call on page load
         updatePlatformUI();
-        //simulateProgress();
+        simulateProgress(); // 启用进度模拟
 
         setTimeout(function() {
             window.location.replace('/check_for_file?filename={{filename}}&uuid={{uuid}}&platform={{platform}}');

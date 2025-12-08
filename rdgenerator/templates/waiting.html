@@ -185,7 +185,7 @@
 		function simulateProgress() {
 			const progressBar = document.getElementById('progressBarFill');
 			const statusText = document.getElementById('statusText');
-			let currentProgress = 50; // 当前进度（用于平滑动画）
+			let currentProgress = 0; // 当前进度（用于平滑动画）
 			let progressInterval = null;
 		
 			// 核心：从状态文本中提取百分比数值
@@ -193,7 +193,7 @@
 				// 正则匹配 "XX%" 中的数字（支持整数/小数）
 				const progressMatch = statusText.textContent.match(/(\d+(\.\d+)?)%/);
 				// 提取到数值则转成数字，否则默认0
-				return progressMatch ? parseFloat(progressMatch[1]) : 0;
+				return progressMatch ? parseFloat(progressMatch[1]) : 1;
 			}
 		
 			// 进度条平滑过渡逻辑

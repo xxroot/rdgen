@@ -55,19 +55,20 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .progress-bar {
-            width: 100%;
-            max-width: 300px;
-            height: 10px;
-            background-color: #6072DB;
-            border-radius: 5px;
-            overflow: hidden;
-            margin: 20px auto;
-        }
+		.progress-bar {
+			width: 100%;
+			max-width: 300px;
+			height: 20px;
+			background-color: #FFFFFF;
+			border-radius: 50px;
+			overflow: hidden;
+			margin: 20px auto;
+			box-shadow: 0 0 6px rgba(30, 144, 255, 0.45);
+		}
         .progress-bar-fill {
             width: 0%;
             height: 100%;
-            background-color: #3498db;
+            background-color: #4A90E2;
             transition: width 0.8s ease-in-out;
         }
     </style>
@@ -193,7 +194,7 @@
 				// 正则匹配 "XX%" 中的数字（支持整数/小数）
 				const progressMatch = statusText.textContent.match(/(\d+(\.\d+)?)%/);
 				// 提取到数值则转成数字，否则默认0
-				return progressMatch ? parseFloat(progressMatch[1]) : 1;
+				return progressMatch ? parseFloat(progressMatch[1]) : 2;
 			}
 		
 			// 进度条平滑过渡逻辑

@@ -177,22 +177,22 @@
             if (platform === 'macos') {
                 document.getElementById('pageTitle').textContent = 'MacOS Build Generated';
                 platformLogos.macos.style.display = 'block';
-                platformNote.textContent = 'Note: For macOS, you may need to adjust security settings to run the application.';
+                platformNote.textContent = '注意：您可能需要调整安全设置才能运行应用程序.';
                 platformNote.style.display = 'block';
             } else if (platform === 'windows' || platform === 'windows-x86') {
                 document.getElementById('pageTitle').textContent = 'Windows Build Generated';
                 platformLogos.windows.style.display = 'block';
-                platformNote.textContent = 'Note: You might need to disable SmartScreen or adjust Windows security settings.';
+                platformNote.textContent = '注意：您可能需要禁用SmartScreen或调整Windows安全设置.';
                 platformNote.style.display = 'block';
             } else if (platform === 'linux') {
                 document.getElementById('pageTitle').textContent = 'Linux Build Generated';
                 platformLogos.linux.style.display = 'block';
-                platformNote.textContent = 'Note: Ensure you have the necessary dependencies installed.';
+                platformNote.textContent = '注意：您可能需要安装必要的依赖项.';
                 platformNote.style.display = 'block';
             } else if (platform === 'android') {
                 document.getElementById('pageTitle').textContent = 'Android Build Generated';
                 platformLogos.android.style.display = 'block';
-                platformNote.textContent = 'Note: You may need to enable "Unknown Sources" in device settings.';
+                platformNote.textContent = '注意：您可能需要在设备设置中启用"未知来源".';
                 platformNote.style.display = 'block';
             }
         }

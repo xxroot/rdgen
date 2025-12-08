@@ -245,7 +245,7 @@ def generator_view(request):
             response = requests.post(url, json=data, headers=headers)
             print(response)
             if response.status_code == 204:
-                return render(request, 'waiting.html', {'filename':filename, 'uuid':myuuid, 'status':"Starting generator...please wait", 'platform':platform})
+                return render(request, 'waiting.html', {'filename':filename, 'uuid':myuuid, 'status':"正在初始化环境，请稍等", 'platform':platform})
             else:
                 return JsonResponse({"error": "Something went wrong"})
     else:
@@ -296,7 +296,7 @@ def get_png(request):
 def create_github_run(myuuid):
     new_github_run = GithubRun(
         uuid=myuuid,
-        status="Starting generator...please wait"
+        status="正在初始化环境，请稍等"
     )
     new_github_run.save()
 

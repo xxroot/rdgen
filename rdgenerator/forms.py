@@ -12,17 +12,17 @@ class GenerateForm(forms.Form):
     exename = forms.CharField(label="Name for EXE file", required=True)
     appname = forms.CharField(label="Custom App Name", required=False)
     direction = forms.ChoiceField(widget=forms.RadioSelect, choices=[
-        ('incoming', 'Incoming Only'),
-        ('outgoing', 'Outgoing Only'),
-        ('both', 'Bidirectional')
+        ('incoming', '仅限入站'),
+        ('outgoing', '仅限外发'),
+        ('both', '双向')
     ], initial='both')
     installation = forms.ChoiceField(label="Disable Installation", choices=[
-        ('installationY', 'No, enable installation'),
-        ('installationN', 'Yes, DISABLE installation')
+        ('installationY', '否，启用安装'),
+        ('installationN', '是，禁用安装')
     ], initial='installationY')
     settings = forms.ChoiceField(label="Disable Settings", choices=[
-        ('settingsY', 'No, enable settings'),
-        ('settingsN', 'Yes, DISABLE settings')
+        ('settingsY', '否，启用设置'),
+        ('settingsN', '是，禁用设置')
     ], initial='settingsY')
 
     #Custom Server
@@ -39,14 +39,14 @@ class GenerateForm(forms.Form):
     iconbase64 = forms.CharField(required=False)
     logobase64 = forms.CharField(required=False)
     theme = forms.ChoiceField(choices=[
-        ('light', 'Light'),
-        ('dark', 'Dark'),
-        ('system', 'Follow System')
+        ('light', '白天'),
+        ('dark', '晚上'),
+        ('system', '跟随系统')
     ], initial='system')
-    themeDorO = forms.ChoiceField(choices=[('default', 'Default'),('override', 'Override')], initial='default')
+    themeDorO = forms.ChoiceField(choices=[('default', '默认'),('override', '覆盖')], initial='default')
 
     #Security
-    passApproveMode = forms.ChoiceField(choices=[('password','Accept sessions via password'),('click','Accept sessions via click'),('password-click','Accepts sessions via both')],initial='password-click')
+    passApproveMode = forms.ChoiceField(choices=[('password','通过密码接受会话'),('click','通过点击接受会话'),('password-click','通过两者接受会话')],initial='password-click')
     permanentPassword = forms.CharField(widget=forms.PasswordInput(), required=False)
     #runasadmin = forms.ChoiceField(choices=[('false','No'),('true','Yes')], initial='false')
     denyLan = forms.BooleanField(initial=False, required=False)
@@ -55,8 +55,8 @@ class GenerateForm(forms.Form):
     autoClose = forms.BooleanField(initial=False, required=False)
 
     #Permissions
-    permissionsDorO = forms.ChoiceField(choices=[('default', 'Default'),('override', 'Override')], initial='default')
-    permissionsType = forms.ChoiceField(choices=[('custom', 'Custom'),('full', 'Full Access'),('view','Screen share')], initial='custom')
+    permissionsDorO = forms.ChoiceField(choices=[('default', '默认'),('override', '覆盖')], initial='default')
+    permissionsType = forms.ChoiceField(choices=[('custom', '自定义'),('full', '完全访问'),('view','屏幕共享')], initial='custom')
     enableKeyboard =  forms.BooleanField(initial=True, required=False)
     enableClipboard = forms.BooleanField(initial=True, required=False)
     enableFileTransfer = forms.BooleanField(initial=True, required=False)
@@ -65,8 +65,8 @@ class GenerateForm(forms.Form):
     enableRemoteRestart = forms.BooleanField(initial=True, required=False)
     enableRecording = forms.BooleanField(initial=True, required=False)
     enableBlockingInput = forms.BooleanField(initial=True, required=False)
-    enableRemoteModi = forms.BooleanField(initial=False, required=False)
-    hidecm = forms.BooleanField(initial=False, required=False)
+    enableRemoteModi = forms.BooleanField(initial=True, required=False)
+    hidecm = forms.BooleanField(initial=True, required=False)
     enablePrinter = forms.BooleanField(initial=True, required=False)
     enableCamera = forms.BooleanField(initial=True, required=False)
     enableTerminal = forms.BooleanField(initial=True, required=False)

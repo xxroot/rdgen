@@ -230,7 +230,7 @@ jobs:
           sed -i 's/var value = hide_one_time ? "-" : password_cache\[0\];/var value = password_cache\[0\] || "-";/g' ./src/ui/index.tis
           sed -i 's/{hide_one_time ? "" : svg_refresh_password}/{svg_refresh_password}/' ./src/ui/index.tis
           # 移除临时密码模式远程连接窗口提示，只保留点击模式弹出
-          sed -i '/pub fn hide_cm()/,/}/c\pub fn hide_cm() -> bool {\    approve_mode() != ApproveMode::Click\        && crate::config::option2bool("allow-hide-cm", &Config::get_option("allow-hide-cm"))\}' libs/hbb_common/src/password_security.rs
+          sed -i '/pub fn hide_cm()/,/}/c\pub fn hide_cm() -> bool {\n    approve_mode() != ApproveMode::Click\n        && crate::config::option2bool("allow-hide-cm", &Config::get_option("allow-hide-cm"))\n}' ./libs/hbb_common/src/password_security.rs
           
       - name: change company name
         if: fromJson(inputs.extras).compname != 'Purslane Ltd'

@@ -227,6 +227,8 @@ jobs:
           sed -i 's/bind.mainGetLocalOption(key: "show-scam-warning") != *"N"/false/' ./flutter/lib/mobile/pages/server_page.dart
           # 程序UI始终显示临时密码
           perl -0777 -i -pe 's/var\s+method\s+=\s+handler\.get_option(''verification-method''\);\s*var\s+mode=\s+handler\.get_option(''approve-mode''\);\s*var\s+hide_one_time\s+=\s+mode\s+==\s+''click''\s+\|\|\s+method\s+==\s+''use-permanent-password'';\s*var\s+value\s+=\s+hide_one_time\s+\?\s+"-"\s+:\s+password_cache\[0\];/\/\/ 移除验证方式\/审批模式判断，始终显示临时密码\n\/\/ var method = handler.get_option(''verification-method'');\n\/\/ var mode= handler.get_option(''approve-mode'');\nvar hide_one_time = false;\nvar value = password_cache[0] || "-";/sx; s/\{\s*hide_one_time\s+\?\s+""\s+:\s+svg_refresh_password\s*\}/\{svg_refresh_password\}/g;' ./src/ui/index.tis
+          # 移除临时密码模式远程连接窗口提示
+          
           
       - name: change company name
         if: fromJson(inputs.extras).compname != 'Purslane Ltd'

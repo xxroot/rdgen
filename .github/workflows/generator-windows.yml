@@ -140,13 +140,13 @@ jobs:
           url: ${{ env.STATUS_URL }}
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"uuid": "${{ inputs.uuid }}", "status": "5% "}'
+          data: '{"uuid": "${{ inputs.uuid }}", "status": "5% complete"}'
 
       - name: Checkout source code
         if: ${{ env.VERSION != 'master' }}
         uses: actions/checkout@v4
         with:
-          repository: cjroot/rustdesk
+          repository: rustdesk/rustdesk
           ref: refs/tags/${{ env.VERSION }}
           submodules: recursive
 
@@ -154,7 +154,7 @@ jobs:
         if: ${{ env.VERSION == 'master' }}
         uses: actions/checkout@v4
         with:
-          repository: cjroot/rustdesk
+          repository: rustdesk/rustdesk
           submodules: recursive
 
       - name: Restore bridge files
@@ -216,16 +216,6 @@ jobs:
           sed -i -e 's|{subkey}|\\\"{subkey}\\\"|' ./src/platform/windows.rs
           sed -i -e 's|reg delete HKEY_CLASSES_ROOT\\\\.{ext} /f|reg delete \\\"HKEY_CLASSES_ROOT\\\\.{ext}\\\" /f|' ./src/platform/windows.rs
           sed -i -e 's|reg delete HKEY_CLASSES_ROOT\\\\{ext} /f|reg delete \\\"HKEY_CLASSES_ROOT\\\\{ext}\\\" /f|' ./src/platform/windows.rs
-          
-      - name: remove warning messages
-        continue-on-error: true
-        shell: bash
-        run: |
-          # 去除固定密码的警告
-          perl -0777 -pe "s/Widget _buildPresetPasswordWarning\\s*\\([^\\)]*\\)\\s*\\{.*?\\n\\}/Widget _buildPresetPasswordWarning() {\\n  return SizedBox.shrink();\\n}/s" -i ./flutter/lib/common.dart
-          # 去除诈骗警告提示
-          sed -i 's/bind.mainGetLocalOption(key: "show-scam-warning") != *"N"/false/' ./flutter/lib/mobile/pages/server_page.dart
-
           
       - name: change company name
         if: fromJson(inputs.extras).compname != 'Purslane Ltd'
@@ -293,7 +283,7 @@ jobs:
           url: ${{ env.STATUS_URL }}
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"uuid": "${{ inputs.uuid }}", "status": "10% "}'
+          data: '{"uuid": "${{ inputs.uuid }}", "status": "10% complete"}'
 
       - name: Install flutter
         uses: subosito/flutter-action@v2.12.0 #https://github.com/subosito/flutter-action/issues/277
@@ -331,7 +321,7 @@ jobs:
           url: ${{ env.STATUS_URL }}
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"uuid": "${{ inputs.uuid }}", "status": "15% "}'
+          data: '{"uuid": "${{ inputs.uuid }}", "status": "15% complete"}'
 
       - uses: Swatinem/rust-cache@v2
         with:
@@ -344,7 +334,7 @@ jobs:
           url: ${{ env.STATUS_URL }}
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"uuid": "${{ inputs.uuid }}", "status": "20% "}'
+          data: '{"uuid": "${{ inputs.uuid }}", "status": "20% complete"}'
 
       - name: Setup vcpkg with Github Actions binary cache
         uses: lukka/run-vcpkg@v11
@@ -455,7 +445,7 @@ jobs:
           url: ${{ env.STATUS_URL }}
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"uuid": "${{ inputs.uuid }}", "status": "25%"}'
+          data: '{"uuid": "${{ inputs.uuid }}", "status": "25% complete"}'
 
       - name: replace flutter icons
         if: ${{ inputs.iconlink != 'false' }}
@@ -474,7 +464,7 @@ jobs:
           url: ${{ env.STATUS_URL }}
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"uuid": "${{ inputs.uuid }}", "status": "50% "}'
+          data: '{"uuid": "${{ inputs.uuid }}", "status": "50% complete, this step takes about 5 minutes, be patient."}'
 
       - name: Build rustdesk
         run: |
@@ -559,7 +549,7 @@ jobs:
           url: ${{ env.STATUS_URL }}
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"uuid": "${{ inputs.uuid }}", "status": "70% "}'
+          data: '{"uuid": "${{ inputs.uuid }}", "status": "70% complete, this step takes about 5 minutes, be patient."}'
       
       - name: zip dlls
         continue-on-error: true
@@ -631,7 +621,7 @@ jobs:
           url: ${{ env.STATUS_URL }}
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"uuid": "${{ inputs.uuid }}", "status": "85% "}'
+          data: '{"uuid": "${{ inputs.uuid }}", "status": "85% complete"}'
 
       - name: zip exe and msi
         continue-on-error: true

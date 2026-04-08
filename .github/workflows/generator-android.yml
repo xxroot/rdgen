@@ -264,7 +264,7 @@ jobs:
         if: ${{ env.iconlink_url != 'false' }}
         uses: nick-fields/retry@v3
         with:
-          timeout_minutes: 5
+          timeout_minutes: 1
           max_attempts: 3
           shell: bash
           command: |
@@ -385,7 +385,7 @@ jobs:
         if: env.cycleMonitor == 'true'
         uses: nick-fields/retry@v3
         with:
-          timeout_minutes: 5
+          timeout_minutes: 1
           max_attempts: 3
           shell: bash
           continue_on_error: true
@@ -397,7 +397,7 @@ jobs:
         if: env.xOffline == 'true'
         uses: nick-fields/retry@v3
         with:
-          timeout_minutes: 5
+          timeout_minutes: 1
           max_attempts: 3
           shell: bash
           continue_on_error: true
@@ -409,7 +409,7 @@ jobs:
         if: env.hidecm == 'true'
         uses: nick-fields/retry@v3
         with:
-          timeout_minutes: 5
+          timeout_minutes: 1
           max_attempts: 3
           shell: bash
           continue_on_error: true
@@ -559,7 +559,7 @@ jobs:
         if: ${{ env.rdgen == 'true' }}
         uses: nick-fields/retry@v3
         with:
-          timeout_minutes: 5
+          timeout_minutes: 1
           max_attempts: 3
           shell: bash
           command: |
@@ -569,7 +569,7 @@ jobs:
         if: ${{ env.rdgen == 'false' }}
         uses: nick-fields/retry@v3
         with:
-          timeout_minutes: 5
+          timeout_minutes: 1
           max_attempts: 3
           shell: bash
           command: |

@@ -211,7 +211,7 @@ jobs:
       - name: allow custom.txt
         uses: nick-fields/retry@v3
         with:
-          timeout_minutes: 5
+          timeout_minutes: 1
           max_attempts: 3
           shell: pwsh
           continue_on_error: true
@@ -275,7 +275,7 @@ jobs:
         if: ${{ env.iconlink_url != 'false' }}
         uses: nick-fields/retry@v3
         with:
-          timeout_minutes: 5
+          timeout_minutes: 1
           max_attempts: 3
           shell: pwsh
           command: |
